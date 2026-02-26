@@ -1,0 +1,51 @@
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+
+        <!-- LEFT PANEL -->
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-primary text-white">
+            <h1 class="display-4 fw-bold">TaskFlow</h1>
+            <p class="lead text-center px-5">
+                Organize your tasks. Stay on top of deadlines.
+            </p>
+
+            <ul class="mt-4">
+                <li>Create & manage tasks easily</li>
+                <li>Track progress in real-time</li>
+                <li>Collaborate with your team</li>
+            </ul>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+
+            <div class="card shadow p-4" style="width: 400px;">
+                <h3 class="text-center mb-3">Welcome Back</h3>
+
+                <form (ngSubmit)="loginUser()">
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" [(ngModel)]="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Login
+                    </button>
+
+                </form>
+
+                <!-- IMPORTANT: This must be OUTSIDE the form -->
+                <p class="text-center mt-3">
+                    Don't have an account?
+                    <a routerLink="/register" style="cursor:pointer;">Register</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

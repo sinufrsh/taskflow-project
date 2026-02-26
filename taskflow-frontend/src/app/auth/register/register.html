@@ -1,0 +1,79 @@
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+
+        <!-- LEFT PANEL -->
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-primary text-white">
+            <h1 class="display-4 fw-bold">TaskFlow</h1>
+            <p class="lead">Join thousands of teams building better workflows.</p>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+
+            <div class="card p-4 shadow" style="width:420px">
+
+                <h3 class="text-center mb-3">Create your Account</h3>
+
+                <form (ngSubmit)="registerUser()">
+
+                    <input class="form-control mb-2" placeholder="Full Name" name="fullName" [(ngModel)]="fullName"
+                        required>
+
+                    <input type="email" class="form-control mb-2" placeholder="Email" name="email" [(ngModel)]="email"
+                        #emailRef="ngModel" required email>
+
+                    <div *ngIf="emailRef.invalid && emailRef.touched" class="alert alert-danger p-2">
+
+                        <span *ngIf="emailRef.errors?.['required']">
+                            Email is required
+                        </span>
+
+                        <span *ngIf="emailRef.errors?.['email']">
+                            Enter a valid email address
+                        </span>
+
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <input type="password" class="form-control mb-2" placeholder="Password" name="password"
+                        [(ngModel)]="password" (input)="checkStrength()" required>
+
+                    <!-- STRENGTH BAR -->
+                    <div class="mb-3">
+                        <small>Password strength</small>
+                        <div class="progress" style="height:6px">
+                            <div class="progress-bar" [style.width.%]="passwordStrength * 25" [ngClass]="{
+                     'bg-danger': passwordStrength<=1,
+                     'bg-warning': passwordStrength==2,
+                     'bg-success': passwordStrength>=3
+                   }">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <input type="password" class="form-control mb-2" placeholder="Confirm Password"
+                        name="confirmPassword" [(ngModel)]="confirmPassword" required>
+
+                    <!-- ERROR MESSAGE -->
+                    <div *ngIf="confirmPassword && !passwordsMatch()" class="alert alert-danger p-2">
+                        Passwords do not match
+                    </div>
+
+                    <button class="btn btn-primary w-100" [disabled]="!passwordsMatch() || emailRef.invalid">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <p class="text-center mt-3">
+                    Already have an account?
+                    <a routerLink="/">Sign in here</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
