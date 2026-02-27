@@ -53,13 +53,18 @@ export class Home implements OnInit {
   }
 
   // LOAD TASKS
-  loadTasks() {
+ loadTasks() {
     this.taskService.getTasks(this.email)
-      .subscribe((data: any) => {
-        this.tasks = data;
+      .subscribe({
+        next: (data: any) => {
+            setTimeout(() => {
+                 this.tasks = data;
+                 this.cdr.markForCheck();
+            })
+        },
+        error: err => console.error("Task load error:", err)
       });
   }
-
   // OPEN MODAL
   openModal() {
     this.showModal = true;
